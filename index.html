@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore the human mind. A premium interactive platform for psychology, neuroscience, and mental wellness." />
+  <title>MindScape — Explore the Human Mind</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Cursor glow -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Background neural canvas -->
+  <canvas id="neuralCanvas" class="neural-canvas" aria-hidden="true"></canvas>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="28" height="28"><path d="M16 3c-4 0-7 2.5-7 6 0 1-.6 1.6-1.4 2.2C6 12.4 5 14 5 16.5 5 20 7.5 22 10 22c0 3 2.5 5 6 5s6-2 6-5c2.5 0 5-2 5-5.5 0-2.5-1-4.1-2.6-5.3C23.6 10.6 23 10 23 9c0-3.5-3-6-7-6z" fill="none" stroke="url(#g1)" stroke-width="1.6"/><defs><linearGradient id="g1" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#38bdf8"/><stop offset="1" stop-color="#6366f1"/></linearGradient></defs></svg>
+        </span>
+        <span class="brand-name">Mind<span>Scape</span></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="#home">Home</a>
+        <a href="#explore">Explore</a>
+        <a href="#concepts">Concepts</a>
+        <a href="#psychologists">Psychologists</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#resources">Resources</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <span class="eyebrow reveal">Neuroscience · Psychology · Mind</span>
+          <h1 class="hero-title reveal">Explore the <span class="grad-text">Human Mind</span></h1>
+          <p class="hero-sub reveal">Understand behavior. Discover emotions. Explore consciousness.</p>
+          <div class="hero-actions reveal">
+            <a href="#explore" class="btn btn-primary magnetic" data-ripple>Explore Psychology</a>
+            <a href="#concepts" class="btn btn-ghost magnetic" data-ripple>Start Learning</a>
+          </div>
+          <div class="hero-mini-stats reveal">
+            <div><strong data-count="100" data-suffix="+">0</strong><span>Concepts</span></div>
+            <div><strong data-count="50" data-suffix="+">0</strong><span>Psychologists</span></div>
+            <div><strong data-count="10" data-suffix="+">0</strong><span>Fields</span></div>
+          </div>
+        </div>
+        <div class="hero-visual reveal">
+          <div class="brain-orb">
+            <canvas id="heroBrain" width="520" height="520" aria-label="Interactive neural brain visualization"></canvas>
+            <div class="orb-ring ring-1"></div>
+            <div class="orb-ring ring-2"></div>
+            <div class="float-symbol s1">Ψ</div>
+            <div class="float-symbol s2">🧠</div>
+            <div class="float-symbol s3">❤️</div>
+            <div class="float-symbol s4">🔬</div>
+          </div>
+        </div>
+      </div>
+      <a href="#explore" class="scroll-hint" aria-label="Scroll down"><span></span></a>
+    </section>
+
+    <!-- ============ EXPLORE / TOPICS ============ -->
+    <section class="section" id="explore">
+      <div class="section-head reveal">
+        <span class="kicker">Fields of study</span>
+        <h2>Explore Psychology</h2>
+        <p>Eight core branches that map how we think, feel, grow, and behave.</p>
+      </div>
+      <div class="topic-grid" id="topicGrid"></div>
+    </section>
+
+    <!-- ============ INTERACTIVE BRAIN ============ -->
+    <section class="section brain-section" id="brain">
+      <div class="section-head reveal">
+        <span class="kicker">Neuroanatomy</span>
+        <h2>The Interactive Brain</h2>
+        <p>Hover over a region to reveal its psychological function.</p>
+      </div>
+      <div class="brain-explorer reveal">
+        <div class="brain-map">
+          <svg id="brainSvg" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Human brain regions"></svg>
+        </div>
+        <aside class="brain-panel" id="brainPanel">
+          <div class="brain-panel-inner" id="brainPanelInner">
+            <span class="brain-panel-kicker">Region</span>
+            <h3>Hover a region</h3>
+            <p>Move your cursor over the brain to explore the functions of each area.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ CONCEPTS ============ -->
+    <section class="section" id="concepts">
+      <div class="section-head reveal">
+        <span class="kicker">The building blocks</span>
+        <h2>Understand the Mind</h2>
+        <p>Tap any concept to open a detailed panel of theories, examples and thinkers.</p>
+      </div>
+      <div class="concept-grid" id="conceptGrid"></div>
+    </section>
+
+    <!-- ============ PSYCHOLOGISTS ============ -->
+    <section class="section" id="psychologists">
+      <div class="section-head reveal">
+        <span class="kicker">The pioneers</span>
+        <h2>Famous Psychologists</h2>
+        <p>Scroll to travel through the minds that shaped the science.</p>
+      </div>
+      <div class="ps-scroller-wrap">
+        <button class="ps-arrow left" id="psPrev" aria-label="Scroll left">‹</button>
+        <div class="ps-scroller" id="psScroller"></div>
+        <button class="ps-arrow right" id="psNext" aria-label="Scroll right">›</button>
+      </div>
+    </section>
+
+    <!-- ============ TIMELINE ============ -->
+    <section class="section" id="timeline">
+      <div class="section-head reveal">
+        <span class="kicker">A brief history</span>
+        <h2>Psychology Through Time</h2>
+        <p>Major milestones in the study of the mind.</p>
+      </div>
+      <div class="timeline" id="timelineList"></div>
+    </section>
+
+    <!-- ============ FACTS / STATS ============ -->
+    <section class="section stats-section" id="facts">
+      <div class="stats-grid" id="statsGrid"></div>
+    </section>
+
+    <!-- ============ QUIZ ============ -->
+    <section class="section" id="quiz">
+      <div class="section-head reveal">
+        <span class="kicker">Test yourself</span>
+        <h2>How Well Do You Understand the Mind?</h2>
+        <p>Ten questions. Instant feedback. See where you land.</p>
+      </div>
+      <div class="quiz-card reveal" id="quizCard"></div>
+    </section>
+
+    <!-- ============ RESEARCH ============ -->
+    <section class="section" id="research">
+      <div class="section-head reveal">
+        <span class="kicker">How we know</span>
+        <h2>Psychology Research</h2>
+        <p>The methods scientists use to study behavior and the mind.</p>
+      </div>
+      <div class="research-grid" id="researchGrid"></div>
+    </section>
+
+    <!-- ============ RESOURCES ============ -->
+    <section class="section" id="resources">
+      <div class="section-head reveal">
+        <span class="kicker">Learn more</span>
+        <h2>Resource Library</h2>
+        <p>Search and filter curated notes, articles, research and more.</p>
+      </div>
+      <div class="resource-controls reveal">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><line x1="21" y1="21" x2="16.5" y2="16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="search" id="resourceSearch" placeholder="Search resources..." aria-label="Search resources" />
+        </div>
+        <div class="filter-pills" id="filterPills"></div>
+      </div>
+      <div class="resource-grid" id="resourceGrid"></div>
+      <p class="resource-empty" id="resourceEmpty" hidden>No resources match your search.</p>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="footer">
+    <canvas id="footerCanvas" class="footer-canvas" aria-hidden="true"></canvas>
+    <div class="footer-inner">
+      <h2 class="footer-quote reveal">The mind is where <span class="grad-text">everything begins.</span></h2>
+      <div class="footer-cols">
+        <div class="footer-brand">
+          <span class="brand-name">Mind<span>Scape</span></span>
+          <p>A premium, interactive platform for exploring psychology, neuroscience and the human experience.</p>
+          <div class="socials">
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Instagram">◎</a>
+            <a href="#" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <h4>Psychology</h4>
+          <a href="#explore">Topics</a>
+          <a href="#concepts">Concepts</a>
+          <a href="#brain">The Brain</a>
+        </div>
+        <div class="footer-nav">
+          <h4>Resources</h4>
+          <a href="#resources">Library</a>
+          <a href="#research">Research</a>
+          <a href="#quiz">Quiz</a>
+        </div>
+        <div class="footer-nav">
+          <h4>About</h4>
+          <a href="#psychologists">Pioneers</a>
+          <a href="#timeline">Timeline</a>
+          <a href="#" id="contactLink">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year"></span> MindScape. Built for curious minds.</span>
+        <span>Understand behavior. Discover emotions. Explore consciousness.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Concept modal -->
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
